@@ -45,10 +45,6 @@ function prompts() {
                     addEmployee();
                     break;
 
-                case "view all employees by department":
-                    employeesByDepartment();
-                    break;
-
                 case "view all departments":
                     viewDepartments();
                     break;
@@ -339,13 +335,11 @@ function addEmployee() {
           },
           function (err) {
             if (err) throw err;
-            console.log("Your department was added successfully!");
+            console.log("Your department was successfuly added!");
             prompts();
           }
         );
       });
   }
 
-  function exit() {
-    process.exit();
-  }
+//exit function??????

@@ -80,6 +80,13 @@ function employeeView() {
     connection.query("SELECT * FROM employee", (err, res) => {
       if (err) throw err;
       console.table(res);
-      employeeQuesInit();
+      prompts();
+    });
+  }
+function viewDepartments() {
+    connection.query("SELECT * FROM department", (err, res) => {
+      if (err) throw err;
+      console.table(res);
+      prompts();
     });
   }

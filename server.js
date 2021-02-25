@@ -75,3 +75,11 @@ function prompts() {
             }
         });
 }
+
+function employeeView() {
+    connection.query("SELECT * FROM employee", (err, res) => {
+      if (err) throw err;
+      console.table(res);
+      employeeQuesInit();
+    });
+  }

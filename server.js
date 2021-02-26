@@ -1,6 +1,5 @@
-var mysql = require("mysql");
-var inquirer = require("inquirer");
-const { prompts } = require("inquirer");
+const mysql = require("mysql");
+const inquirer = require("inquirer");
 require("console.table");
 
 
@@ -14,10 +13,10 @@ const connection = mysql.createConnection({
 });
 connection.connect(function (err) {
     if (err) throw err;
-    prompts();
+    start();
 });
 
-function prompts() {
+function start() {
     inquirer
         .prompt({
                 type: "list",
@@ -81,14 +80,14 @@ function employeeView() {
     connection.query("SELECT * FROM employee", (err, res) => {
       if (err) throw err;
       console.table(res);
-      prompts();
+      start();
     });
   }
 function viewDepartments() {
     connection.query("SELECT * FROM department", (err, res) => {
       if (err) throw err;
       console.table(res);
-      prompts();
+      start();
     });
   }
 
@@ -96,7 +95,7 @@ function viewRoles() {
     connection.query("SELECT * FROM role", (err, res) => {
       if (err) throw err;
       console.table(res);
-      prompts();
+      start();
     });
   }
 
@@ -137,7 +136,7 @@ function updateEmployeeRole() {
               (err, res) => {
                 if (err) throw err;
                 console.log(res.affectedRows + " has been updated!\n");
-                prompts();
+                start();
               }
             );
           });
@@ -196,7 +195,7 @@ function updateManager() {
                     (err, res) => {
                       if (err) throw err;
                       console.log(res.affectedRows + " has been updated!\n");
-                      prompts();
+                      start();
                     }
                   );
                 });
@@ -266,7 +265,7 @@ function addEmployee() {
                 function (err) {
                   if (err) throw err;
                   console.log("Your employee was added successfully!");
-                  prompts();
+                  start();
                 }
               );
             });
@@ -275,7 +274,7 @@ function addEmployee() {
     });
   }
   function addRole() {
-    connection.query("SELECT * FROM employeeinfo_db.department;", (err, res) => {
+    connection.query("SELECT * FROM employeesDB.department;", (err, res) => {
       if (err) throw err;
       let department_ids = res.map(({ id, name }) => ({
         name: name,
@@ -336,7 +335,7 @@ function addEmployee() {
           function (err) {
             if (err) throw err;
             console.log("Your department was successfuly added!");
-            prompts();
+            start();
           }
         );
       });
